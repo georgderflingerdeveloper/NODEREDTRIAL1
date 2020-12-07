@@ -24,7 +24,7 @@
     {
         "id": "4b6ef836.e08128",
         "type": "ui_group",
-        "name": "Default",
+        "name": "TRENDS",
         "tab": "68f50b83.653284",
         "order": 1,
         "disp": true,
@@ -256,20 +256,20 @@
         "name": "",
         "group": "4b6ef836.e08128",
         "order": 0,
-        "width": 0,
-        "height": 0,
+        "width": "0",
+        "height": "0",
         "label": "TEMPERATURE",
         "chartType": "line",
-        "legend": "false",
+        "legend": "true",
         "xformat": "HH:mm:ss",
-        "interpolate": "linear",
+        "interpolate": "bezier",
         "nodata": "",
         "dot": false,
-        "ymin": "0",
-        "ymax": "10",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "1",
+        "ymin": "-1",
+        "ymax": "1",
+        "removeOlder": "30",
+        "removeOlderPoints": "10000",
+        "removeOlderUnit": "60",
         "cutout": 0,
         "useOneColor": false,
         "useUTC": false,
@@ -284,12 +284,181 @@
             "#9467bd",
             "#c5b0d5"
         ],
-        "useOldStyle": false,
         "outputs": 1,
-        "x": 830,
-        "y": 200,
+        "x": 1070,
+        "y": 220,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "a93b601.1f653a",
+        "type": "calculator",
+        "z": "bede18b8.d8bb48",
+        "name": "SINUS",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "sin",
+        "constant": "",
+        "round": false,
+        "decimals": 0,
+        "x": 690,
+        "y": 360,
+        "wires": [
+            [
+                "4f963b20.dcb6c4",
+                "1213d77a.ed5249"
+            ]
+        ]
+    },
+    {
+        "id": "3d76fba8.e23e04",
+        "type": "calculator",
+        "z": "bede18b8.d8bb48",
+        "name": "MODULO",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "mod",
+        "constant": "360",
+        "round": false,
+        "decimals": 0,
+        "x": 700,
+        "y": 240,
+        "wires": [
+            [
+                "ced554a6.fbb1b8"
+            ]
+        ]
+    },
+    {
+        "id": "259b012a.5f76ae",
+        "type": "BlinkerUltimate",
+        "z": "bede18b8.d8bb48",
+        "name": "Blinker",
+        "blinkfrequency": "100",
+        "x": 680,
+        "y": 80,
+        "wires": [
+            [
+                "8e6efacd.398748"
+            ]
+        ]
+    },
+    {
+        "id": "8e6efacd.398748",
+        "type": "change",
+        "z": "bede18b8.d8bb48",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 930,
+        "y": 80,
+        "wires": [
+            [
+                "f1102d34.d40c1"
+            ]
+        ]
+    },
+    {
+        "id": "1213d77a.ed5249",
+        "type": "debug",
+        "z": "bede18b8.d8bb48",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f1102d34.d40c1",
+        "type": "function",
+        "z": "bede18b8.d8bb48",
+        "name": "STATIC_INCREMENT",
+        "func": "var TempValue = flow.get('STORAGE')||0;\nTempValue++;\nflow.set('STORAGE', TempValue);\nmsg.payload = TempValue;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 690,
+        "y": 180,
+        "wires": [
+            [
+                "3d76fba8.e23e04"
+            ]
+        ]
+    },
+    {
+        "id": "ced554a6.fbb1b8",
+        "type": "calculator",
+        "z": "bede18b8.d8bb48",
+        "name": "",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "mult",
+        "constant": "0.017453292519943295",
+        "round": false,
+        "decimals": 0,
+        "x": 700,
+        "y": 300,
+        "wires": [
+            [
+                "a93b601.1f653a"
+            ]
+        ]
+    },
+    {
+        "id": "c48671aa.aa178",
+        "type": "inject",
+        "z": "bede18b8.d8bb48",
+        "name": "START",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 490,
+        "y": 80,
+        "wires": [
+            [
+                "259b012a.5f76ae"
+            ]
         ]
     }
 ]
