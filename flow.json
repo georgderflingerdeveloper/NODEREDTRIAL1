@@ -50,5 +50,41 @@
         "x": 630,
         "y": 100,
         "wires": []
+    },
+    {
+        "id": "57ce9679.e25098",
+        "type": "InjectUltimate",
+        "z": "9b93a9f7.a097d8",
+        "name": "Inject",
+        "curVal": true,
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "e9e53d08.52fab"
+            ],
+            [
+                "e9e53d08.52fab"
+            ],
+            [
+                "e9e53d08.52fab"
+            ]
+        ]
+    },
+    {
+        "id": "e9e53d08.52fab",
+        "type": "debug",
+        "z": "9b93a9f7.a097d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 280,
+        "wires": []
     }
 ]
