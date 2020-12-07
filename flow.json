@@ -77,7 +77,8 @@
             [],
             [],
             [
-                "fcb7922c.346d6"
+                "fcb7922c.346d6",
+                "3bc1d3f8.ef3e4c"
             ]
         ]
     },
@@ -95,6 +96,36 @@
         "statusType": "auto",
         "x": 670,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3bc1d3f8.ef3e4c",
+        "type": "SimpleOutputUltimate",
+        "z": "9b93a9f7.a097d8",
+        "name": "T/F",
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "331a63ef.04f87c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "331a63ef.04f87c",
+        "type": "debug",
+        "z": "9b93a9f7.a097d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 340,
         "wires": []
     }
 ]
