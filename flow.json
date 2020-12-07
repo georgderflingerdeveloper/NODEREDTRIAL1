@@ -78,7 +78,7 @@
             [],
             [
                 "fcb7922c.346d6",
-                "3bc1d3f8.ef3e4c"
+                "9e8cede6.35e75"
             ]
         ]
     },
@@ -99,20 +99,6 @@
         "wires": []
     },
     {
-        "id": "3bc1d3f8.ef3e4c",
-        "type": "SimpleOutputUltimate",
-        "z": "9b93a9f7.a097d8",
-        "name": "T/F",
-        "x": 430,
-        "y": 360,
-        "wires": [
-            [
-                "331a63ef.04f87c"
-            ],
-            []
-        ]
-    },
-    {
         "id": "331a63ef.04f87c",
         "type": "debug",
         "z": "9b93a9f7.a097d8",
@@ -127,5 +113,19 @@
         "x": 610,
         "y": 340,
         "wires": []
+    },
+    {
+        "id": "9e8cede6.35e75",
+        "type": "FilterUltimate",
+        "z": "9b93a9f7.a097d8",
+        "name": "Filter",
+        "x": 360,
+        "y": 380,
+        "wires": [
+            [
+                "331a63ef.04f87c"
+            ],
+            []
+        ]
     }
 ]
