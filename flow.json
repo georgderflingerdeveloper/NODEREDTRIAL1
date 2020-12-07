@@ -50,5 +50,51 @@
         "x": 630,
         "y": 100,
         "wires": []
+    },
+    {
+        "id": "fcb7922c.346d6",
+        "type": "BlinkerUltimate",
+        "z": "9b93a9f7.a097d8",
+        "name": "Blinker",
+        "blinkfrequency": 500,
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "bf06b886.377738"
+            ]
+        ]
+    },
+    {
+        "id": "d6089802.bdf9c8",
+        "type": "InjectUltimate",
+        "z": "9b93a9f7.a097d8",
+        "name": "Inject",
+        "curVal": true,
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [],
+            [],
+            [
+                "fcb7922c.346d6"
+            ]
+        ]
+    },
+    {
+        "id": "bf06b886.377738",
+        "type": "debug",
+        "z": "9b93a9f7.a097d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 260,
+        "wires": []
     }
 ]
