@@ -14,6 +14,72 @@
         "info": ""
     },
     {
+        "id": "b5532c03.3fe59",
+        "type": "tab",
+        "label": "CALCULATOR",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "994f8194.3b491",
+        "type": "tab",
+        "label": "BLOCKLY",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "fec7511e.36af7",
+        "type": "tab",
+        "label": "CONSTANTS",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "48a49895.34b328",
+        "type": "tab",
+        "label": "CONFIG",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "412bbdf7.4d6624",
+        "type": "subflow",
+        "name": "TEST_ENV_VARIABLES",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 140,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "46991d12.e42134"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 440,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "46991d12.e42134",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "CMD_TXT",
+                "type": "str",
+                "value": "hi"
+            }
+        ],
+        "color": "#DDAA99"
+    },
+    {
         "id": "68f50b83.653284",
         "type": "ui_tab",
         "name": "Home",
@@ -335,7 +401,7 @@
         "type": "BlinkerUltimate",
         "z": "bede18b8.d8bb48",
         "name": "Blinker",
-        "blinkfrequency": "100",
+        "blinkfrequency": "200",
         "x": 680,
         "y": 80,
         "wires": [
@@ -460,5 +526,596 @@
                 "259b012a.5f76ae"
             ]
         ]
+    },
+    {
+        "id": "ab2a12a1.052d5",
+        "type": "calculator",
+        "z": "b5532c03.3fe59",
+        "name": "",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "sum",
+        "constant": "",
+        "round": false,
+        "decimals": 0,
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "ab4610fe.9d327"
+            ]
+        ]
+    },
+    {
+        "id": "881cb670.6bdf98",
+        "type": "inject",
+        "z": "b5532c03.3fe59",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[1,2,3]",
+        "payloadType": "json",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "ab2a12a1.052d5"
+            ]
+        ]
+    },
+    {
+        "id": "ab4610fe.9d327",
+        "type": "debug",
+        "z": "b5532c03.3fe59",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2c860ea0.ab7642",
+        "type": "calculator",
+        "z": "b5532c03.3fe59",
+        "name": "",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "avg",
+        "constant": "",
+        "round": false,
+        "decimals": 0,
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "d9a8e5c0.3f1268"
+            ]
+        ]
+    },
+    {
+        "id": "1522aa23.6cb5f6",
+        "type": "inject",
+        "z": "b5532c03.3fe59",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[1,2,3]",
+        "payloadType": "json",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "2c860ea0.ab7642"
+            ]
+        ]
+    },
+    {
+        "id": "d9a8e5c0.3f1268",
+        "type": "debug",
+        "z": "b5532c03.3fe59",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ed112e69.1d51e",
+        "type": "calculator",
+        "z": "b5532c03.3fe59",
+        "name": "",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "sum",
+        "constant": "",
+        "round": false,
+        "decimals": 0,
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [
+                "888847fb.e43968"
+            ]
+        ]
+    },
+    {
+        "id": "982f33f3.67cff",
+        "type": "inject",
+        "z": "b5532c03.3fe59",
+        "name": "1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "3247a22f.838d5e"
+            ]
+        ]
+    },
+    {
+        "id": "888847fb.e43968",
+        "type": "debug",
+        "z": "b5532c03.3fe59",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9d08243a.e8bb58",
+        "type": "inject",
+        "z": "b5532c03.3fe59",
+        "name": "2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "3247a22f.838d5e"
+            ]
+        ]
+    },
+    {
+        "id": "43e8dd6e.7487d4",
+        "type": "inject",
+        "z": "b5532c03.3fe59",
+        "name": "3",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "3",
+        "payloadType": "num",
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "3247a22f.838d5e"
+            ]
+        ]
+    },
+    {
+        "id": "3247a22f.838d5e",
+        "type": "join",
+        "z": "b5532c03.3fe59",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "ed112e69.1d51e"
+            ]
+        ]
+    },
+    {
+        "id": "dfc20279.7a201",
+        "type": "Blockly",
+        "z": "994f8194.3b491",
+        "language": "en",
+        "func": "msg['payload'] = 'Hi blockly';\nfor (var count = 0; count < 10; count++) {\n  node.send([msg]);\n}\nnode.send([msg]);\n",
+        "workspaceXml": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><block type=\"node_object_set\" id=\"]*]j!j*NdWi!Dv$=FDnt\" x=\"113\" y=\"-37\"><value name=\"object_field\"><shadow type=\"node_msg\" id=\"@)i~bs[Fz=9h8AN~-/Ci\"></shadow></value><value name=\"field_name\"><shadow type=\"text\" id=\"x1I-IlS|r*/s/ok{dQB#\"><field name=\"TEXT\">payload</field></shadow></value><value name=\"value_field\"><shadow type=\"text\" id=\"fESwYnh;Rr7~*SQhzB^s\"><field name=\"TEXT\">Hi blockly</field></shadow></value><next><block type=\"controls_repeat_ext\" id=\"5?M_M7_TV0V9?CxQ#CTv\"><value name=\"TIMES\"><shadow type=\"math_number\" id=\"8{EyO{4N7z+x$7!rSY[~\"><field name=\"NUM\">10</field></shadow></value><statement name=\"DO\"><block type=\"node_send\" id=\"=j~l?Q~pGt3DyAoZ^@|O\"><field name=\"OUTPUT_NR\">1</field><value name=\"MESSAGE_INPUT\"><shadow type=\"node_msg\" id=\"[sG9dV`]d~qlLmMVJ3lF\"></shadow></value></block></statement><next><block type=\"node_send\" id=\"(d=*|S`E$EyR9notTayd\"><field name=\"OUTPUT_NR\">1</field><value name=\"MESSAGE_INPUT\"><shadow type=\"node_msg\" id=\":4YTB;vLUL]2.)LZ;#*r\"></shadow></value></block></next></block></next></block></xml>",
+        "outputs": 1,
+        "name": "SAY HI",
+        "x": 390,
+        "y": 140,
+        "wires": [
+            [
+                "831c8d49.1537c"
+            ]
+        ]
+    },
+    {
+        "id": "592bfbd6.040ce4",
+        "type": "inject",
+        "z": "994f8194.3b491",
+        "name": "START",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 210,
+        "y": 140,
+        "wires": [
+            [
+                "dfc20279.7a201"
+            ]
+        ]
+    },
+    {
+        "id": "831c8d49.1537c",
+        "type": "debug",
+        "z": "994f8194.3b491",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "6e4f1dce.7f9664",
+        "type": "Blockly",
+        "z": "994f8194.3b491",
+        "language": "en",
+        "func": "if ((msg['payload2']) && (msg['payload1'])) {\n  msg['payload'] = 'TRUE';\n  return msg;\n} else {\n  msg['payload'] = 'FALSE';\n  return msg;\n}\n",
+        "workspaceXml": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><block type=\"controls_if\" id=\"Ns$hUeYA_l#QsH8LBhHK\" x=\"-37\" y=\"-138\"><mutation else=\"1\"></mutation><value name=\"IF0\"><block type=\"logic_operation\" id=\"w9f,On6Q5}6Nqx/S~rEp\"><field name=\"OP\">AND</field><value name=\"A\"><block type=\"node_object_get\" id=\"SBYPJM`m|=NNyySV8-lw\"><mutation action=\"GET\"></mutation><field name=\"action\">GET</field><value name=\"object\"><shadow type=\"node_msg\" id=\"E^ay{~Umm/7I4n[W64SI\"></shadow></value><value name=\"field_name\"><shadow type=\"text\" id=\"6{;#F;$1d0bD!$9cM(TZ\"><field name=\"TEXT\">payload2</field></shadow></value></block></value><value name=\"B\"><block type=\"node_object_get\" id=\"*[qI:U(lcG4}Q/:NT~(;\"><mutation action=\"GET\"></mutation><field name=\"action\">GET</field><value name=\"object\"><shadow type=\"node_msg\" id=\")ycjE$i5:tT17$;t~tWX\"></shadow></value><value name=\"field_name\"><shadow type=\"text\" id=\"xb78cb=-@6^*,?VS]J1?\"><field name=\"TEXT\">payload1</field></shadow></value></block></value></block></value><statement name=\"DO0\"><block type=\"node_object_set\" id=\"IKr[cec`VRDGE?qagOdY\"><value name=\"object_field\"><shadow type=\"node_msg\" id=\"4:u5S$B-LOYnPtacY:^j\"></shadow></value><value name=\"field_name\"><shadow type=\"text\" id=\"pbtJaoPFPha;+hcF[!V^\"><field name=\"TEXT\">payload</field></shadow></value><value name=\"value_field\"><shadow type=\"text\" id=\"$LnK9M#+W8O[{Gsu]v?S\"><field name=\"TEXT\">TRUE</field></shadow></value><next><block type=\"node_return_message\" id=\"=p(TY6A^QFR+m07UTF~l\"><field name=\"OUTPUT_NR\">1</field><value name=\"MESSAGE_INPUT\"><shadow type=\"node_msg\" id=\"yy[.KFzn[v37O^B`TDXo\"></shadow></value></block></next></block></statement><statement name=\"ELSE\"><block type=\"node_object_set\" id=\"WO~ae,E0ToHJabvrdR.f\"><value name=\"object_field\"><shadow type=\"node_msg\" id=\";f9Y=1X%cJ-._)U,%ml)\"></shadow></value><value name=\"field_name\"><shadow type=\"text\" id=\"sp$:M|~3sgeax;8#-ZKO\"><field name=\"TEXT\">payload</field></shadow></value><value name=\"value_field\"><shadow type=\"text\" id=\"?5uJb`HDrhh|q7qr.=-X\"><field name=\"TEXT\">FALSE</field></shadow></value><next><block type=\"node_return_message\" id=\":|0x+-;@t9I?2BD5Qt|p\"><field name=\"OUTPUT_NR\">1</field><value name=\"MESSAGE_INPUT\"><shadow type=\"node_msg\" id=\"?+%18z|6y~c=N;]Ji|fu\"></shadow></value></block></next></block></statement></block></xml>",
+        "outputs": 1,
+        "name": "AND",
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "223aeb11.322dd4"
+            ]
+        ]
+    },
+    {
+        "id": "3297c32a.0e022c",
+        "type": "inject",
+        "z": "994f8194.3b491",
+        "name": "START",
+        "props": [
+            {
+                "p": "payload1",
+                "v": "true",
+                "vt": "bool"
+            },
+            {
+                "p": "payload2",
+                "v": "false",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "6e4f1dce.7f9664"
+            ]
+        ]
+    },
+    {
+        "id": "223aeb11.322dd4",
+        "type": "debug",
+        "z": "994f8194.3b491",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b0ebd0a9.00e3f",
+        "type": "debug",
+        "z": "412bbdf7.4d6624",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "5acce9e3.600078",
+        "type": "subflow:412bbdf7.4d6624",
+        "z": "fec7511e.36af7",
+        "name": "",
+        "env": [
+            {
+                "name": "CMD_TXT",
+                "value": "Say Something",
+                "type": "str"
+            }
+        ],
+        "x": 470,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46991d12.e42134",
+        "type": "change",
+        "z": "412bbdf7.4d6624",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "CMD_TXT",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 80,
+        "wires": [
+            [
+                "b0ebd0a9.00e3f"
+            ]
+        ]
+    },
+    {
+        "id": "7b68c127.0ef6b",
+        "type": "inject",
+        "z": "fec7511e.36af7",
+        "name": "START",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "5acce9e3.600078"
+            ]
+        ]
+    },
+    {
+        "id": "62517928.b0d948",
+        "type": "subflow:412bbdf7.4d6624",
+        "z": "fec7511e.36af7",
+        "name": "",
+        "env": [
+            {
+                "name": "CMD_TXT",
+                "value": "Say Something different",
+                "type": "str"
+            }
+        ],
+        "x": 470,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cad73d1a.29cc6",
+        "type": "inject",
+        "z": "fec7511e.36af7",
+        "name": "START",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "62517928.b0d948"
+            ]
+        ]
+    },
+    {
+        "id": "c49458c5.a80db8",
+        "type": "comment",
+        "z": "fec7511e.36af7",
+        "name": "say something",
+        "info": "",
+        "x": 440,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e7d6b60c.313918",
+        "type": "comment",
+        "z": "fec7511e.36af7",
+        "name": "say something different",
+        "info": "",
+        "x": 460,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5d240ec.be9abf",
+        "type": "config",
+        "z": "48a49895.34b328",
+        "name": "TESTSETTINGS",
+        "properties": [
+            {
+                "p": "MYSETTING",
+                "pt": "global",
+                "to": "mysettings",
+                "tot": "str"
+            }
+        ],
+        "active": true,
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "50a95392.5c0e0c",
+        "type": "inject",
+        "z": "48a49895.34b328",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "MYSETTING",
+        "payloadType": "global",
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "1a08c2ed.23b17d"
+            ]
+        ]
+    },
+    {
+        "id": "1a08c2ed.23b17d",
+        "type": "debug",
+        "z": "48a49895.34b328",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 300,
+        "wires": []
     }
 ]
