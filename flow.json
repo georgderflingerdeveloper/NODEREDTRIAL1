@@ -10,7 +10,7 @@
         "id": "bede18b8.d8bb48",
         "type": "tab",
         "label": "TREND",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -38,6 +38,13 @@
         "id": "48a49895.34b328",
         "type": "tab",
         "label": "CONFIG",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "436f0ab0.50dc84",
+        "type": "tab",
+        "label": "ENVIRONMENT",
         "disabled": false,
         "info": ""
     },
@@ -78,6 +85,59 @@
             }
         ],
         "color": "#DDAA99"
+    },
+    {
+        "id": "12e071de.a7dc4e",
+        "type": "subflow",
+        "name": "SUB_ENVIRONMENT",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 480,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "1f0224a5.48065b"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 780,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "1f0224a5.48065b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "INSTANCE",
+                "type": "str",
+                "value": "GlobalVariable1"
+            },
+            {
+                "name": "VALUE",
+                "type": "num",
+                "value": "123456789"
+            }
+        ],
+        "color": "#DDAA99",
+        "status": {
+            "x": 780,
+            "y": 200,
+            "wires": [
+                {
+                    "id": "1f0224a5.48065b",
+                    "port": 0
+                }
+            ]
+        }
     },
     {
         "id": "68f50b83.653284",
@@ -1116,6 +1176,163 @@
         "statusType": "auto",
         "x": 760,
         "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1f0224a5.48065b",
+        "type": "function",
+        "z": "12e071de.a7dc4e",
+        "name": "TEST_ENVIRONMENT",
+        "func": "var GlobalVariable = env.get(\"INSTANCE\");\nmsg.payload = global.get(GlobalVariable);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is deployed.\nvar GlobalVariableName = env.get('INSTANCE');\nvar ValueOfGlobalVariable = env.get('VALUE');\nglobal.set(GlobalVariableName, ValueOfGlobalVariable);",
+        "finalize": "",
+        "x": 630,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c81d5a9.a4792a",
+        "type": "subflow:12e071de.a7dc4e",
+        "z": "436f0ab0.50dc84",
+        "name": "ENVIRONMENT_TEST",
+        "env": [],
+        "x": 700,
+        "y": 120,
+        "wires": [
+            [
+                "964371d3.7bc91"
+            ]
+        ]
+    },
+    {
+        "id": "964371d3.7bc91",
+        "type": "debug",
+        "z": "436f0ab0.50dc84",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c9faf4f.09c6008",
+        "type": "inject",
+        "z": "436f0ab0.50dc84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 500,
+        "y": 120,
+        "wires": [
+            [
+                "3c81d5a9.a4792a"
+            ]
+        ]
+    },
+    {
+        "id": "f2760a9.ac95af8",
+        "type": "subflow:12e071de.a7dc4e",
+        "z": "436f0ab0.50dc84",
+        "name": "ENVIRONMENT_TEST",
+        "env": [
+            {
+                "name": "INSTANCE",
+                "value": "GlobalVariable2",
+                "type": "str"
+            },
+            {
+                "name": "VALUE",
+                "value": "987654321",
+                "type": "num"
+            }
+        ],
+        "x": 700,
+        "y": 260,
+        "wires": [
+            [
+                "9bb7bdb2.4a0f2"
+            ]
+        ]
+    },
+    {
+        "id": "9bb7bdb2.4a0f2",
+        "type": "debug",
+        "z": "436f0ab0.50dc84",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1675e789.d69028",
+        "type": "inject",
+        "z": "436f0ab0.50dc84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "f2760a9.ac95af8"
+            ]
+        ]
+    },
+    {
+        "id": "c8c50c2d.95d58",
+        "type": "comment",
+        "z": "436f0ab0.50dc84",
+        "name": "Global variable 1",
+        "info": "",
+        "x": 680,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1480e7b6.194308",
+        "type": "comment",
+        "z": "436f0ab0.50dc84",
+        "name": "Global variable 2",
+        "info": "",
+        "x": 680,
+        "y": 220,
         "wires": []
     }
 ]
