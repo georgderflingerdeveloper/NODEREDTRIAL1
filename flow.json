@@ -1220,7 +1220,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 890,
+        "x": 930,
         "y": 120,
         "wires": []
     },
@@ -1286,7 +1286,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 890,
+        "x": 930,
         "y": 260,
         "wires": []
     },
