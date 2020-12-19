@@ -10,7 +10,7 @@
         "id": "bede18b8.d8bb48",
         "type": "tab",
         "label": "TREND",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
@@ -134,6 +134,44 @@
             "wires": [
                 {
                     "id": "1f0224a5.48065b",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "a3f84c13.142cb",
+        "type": "subflow",
+        "name": "SUB_SINUSGENERATOR",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 860,
+                "y": 280,
+                "wires": [
+                    {
+                        "id": "7c5e424b.14405c",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "INTERVAL",
+                "type": "num",
+                "value": "1000"
+            }
+        ],
+        "color": "#DDAA99",
+        "status": {
+            "x": 860,
+            "y": 220,
+            "wires": [
+                {
+                    "id": "7c5e424b.14405c",
                     "port": 0
                 }
             ]
@@ -317,8 +355,9 @@
         "type": "InjectUltimate",
         "z": "9b93a9f7.a097d8",
         "name": "Inject",
+        "topic": "",
         "curVal": true,
-        "x": 220,
+        "x": 190,
         "y": 240,
         "wires": [
             [],
@@ -461,7 +500,7 @@
         "type": "BlinkerUltimate",
         "z": "bede18b8.d8bb48",
         "name": "Blinker",
-        "blinkfrequency": "200",
+        "blinkfrequency": "500",
         "x": 680,
         "y": 80,
         "wires": [
@@ -1333,6 +1372,215 @@
         "info": "",
         "x": 680,
         "y": 220,
+        "wires": []
+    },
+    {
+        "id": "7c5e424b.14405c",
+        "type": "calculator",
+        "z": "a3f84c13.142cb",
+        "name": "SINUS",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "sin",
+        "constant": "",
+        "round": false,
+        "decimals": 0,
+        "x": 650,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f4076d1c.8caa3",
+        "type": "calculator",
+        "z": "a3f84c13.142cb",
+        "name": "MODULO",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "mod",
+        "constant": "360",
+        "round": false,
+        "decimals": 0,
+        "x": 660,
+        "y": 160,
+        "wires": [
+            [
+                "be0f850f.ba5958"
+            ]
+        ]
+    },
+    {
+        "id": "cdb4c08c.0da2d",
+        "type": "function",
+        "z": "a3f84c13.142cb",
+        "name": "STATIC_INCREMENT",
+        "func": "var TempValue = flow.get('STORAGE')||0;\nTempValue++;\nflow.set('STORAGE', TempValue);\nmsg.payload = TempValue;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 650,
+        "y": 100,
+        "wires": [
+            [
+                "f4076d1c.8caa3"
+            ]
+        ]
+    },
+    {
+        "id": "be0f850f.ba5958",
+        "type": "calculator",
+        "z": "a3f84c13.142cb",
+        "name": "",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "mult",
+        "constant": "0.017453292519943295",
+        "round": false,
+        "decimals": 0,
+        "x": 660,
+        "y": 220,
+        "wires": [
+            [
+                "7c5e424b.14405c"
+            ]
+        ]
+    },
+    {
+        "id": "73efa78a.048df8",
+        "type": "subflow:a3f84c13.142cb",
+        "z": "bede18b8.d8bb48",
+        "name": "SINUSGENERATOR",
+        "env": [],
+        "x": 690,
+        "y": 580,
+        "wires": [
+            [
+                "f248d69f.50d128"
+            ]
+        ]
+    },
+    {
+        "id": "279682de.4dd0de",
+        "type": "BlinkerUltimate",
+        "z": "a3f84c13.142cb",
+        "name": "Blinker",
+        "blinkfrequency": "",
+        "x": 630,
+        "y": 40,
+        "wires": [
+            [
+                "cdb4c08c.0da2d"
+            ]
+        ]
+    },
+    {
+        "id": "f248d69f.50d128",
+        "type": "debug",
+        "z": "bede18b8.d8bb48",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "3f07f6c7.3ecb6a",
+        "type": "inject",
+        "z": "a3f84c13.142cb",
+        "name": "START",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "interval",
+                "v": "INTERVAL",
+                "vt": "env"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 260,
+        "y": 40,
+        "wires": [
+            [
+                "279682de.4dd0de"
+            ]
+        ]
+    },
+    {
+        "id": "cfb47573.1680d8",
+        "type": "BlinkerUltimate",
+        "z": "9b93a9f7.a097d8",
+        "name": "Blinker",
+        "blinkfrequency": 500,
+        "x": 530,
+        "y": 500,
+        "wires": [
+            [
+                "f866e084.37453"
+            ]
+        ]
+    },
+    {
+        "id": "3de27fde.cd043",
+        "type": "inject",
+        "z": "9b93a9f7.a097d8",
+        "name": "INIT",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "interval",
+                "v": "1000",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 290,
+        "y": 500,
+        "wires": [
+            [
+                "cfb47573.1680d8"
+            ]
+        ]
+    },
+    {
+        "id": "f866e084.37453",
+        "type": "debug",
+        "z": "9b93a9f7.a097d8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 500,
         "wires": []
     }
 ]
