@@ -49,6 +49,13 @@
         "info": ""
     },
     {
+        "id": "b6164ce2.07f6a",
+        "type": "tab",
+        "label": "SINUSGENERATOR",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "412bbdf7.4d6624",
         "type": "subflow",
         "name": "TEST_ENV_VARIABLES",
@@ -145,14 +152,37 @@
         "name": "SUB_SINUSGENERATOR",
         "info": "",
         "category": "",
-        "in": [],
+        "in": [
+            {
+                "x": 220,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "9c3ba0b.511976"
+                    },
+                    {
+                        "id": "3b91af6b.a526"
+                    }
+                ]
+            }
+        ],
         "out": [
             {
-                "x": 860,
-                "y": 280,
+                "x": 880,
+                "y": 340,
                 "wires": [
                     {
                         "id": "7c5e424b.14405c",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 880,
+                "y": 400,
+                "wires": [
+                    {
+                        "id": "345c8499.8d6d2c",
                         "port": 0
                     }
                 ]
@@ -163,12 +193,17 @@
                 "name": "INTERVAL",
                 "type": "num",
                 "value": "1000"
+            },
+            {
+                "name": "FAKTOR",
+                "type": "num",
+                "value": "1"
             }
         ],
         "color": "#DDAA99",
         "status": {
-            "x": 860,
-            "y": 220,
+            "x": 880,
+            "y": 260,
             "wires": [
                 {
                     "id": "7c5e424b.14405c",
@@ -1386,9 +1421,11 @@
         "round": false,
         "decimals": 0,
         "x": 650,
-        "y": 280,
+        "y": 300,
         "wires": [
-            []
+            [
+                "7c453b33.d65144"
+            ]
         ]
     },
     {
@@ -1414,13 +1451,13 @@
         "id": "cdb4c08c.0da2d",
         "type": "function",
         "z": "a3f84c13.142cb",
-        "name": "STATIC_INCREMENT",
-        "func": "var TempValue = flow.get('STORAGE')||0;\nTempValue++;\nflow.set('STORAGE', TempValue);\nmsg.payload = TempValue;\nreturn msg;",
+        "name": "INCREMENT_COUNTER",
+        "func": "var Container = 'STORAGE';\nvar TempValue = context.get(Container)||0;\nTempValue++;\nif( msg.reset )\n{\n    TempValue = 0;    \n}\ncontext.set(Container, TempValue);\nmsg.payload = TempValue;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 650,
+        "x": 670,
         "y": 100,
         "wires": [
             [
@@ -1432,32 +1469,18 @@
         "id": "be0f850f.ba5958",
         "type": "calculator",
         "z": "a3f84c13.142cb",
-        "name": "",
+        "name": "MULTIPLY",
         "inputMsgField": "payload",
         "outputMsgField": "payload",
         "operation": "mult",
         "constant": "0.017453292519943295",
         "round": false,
         "decimals": 0,
-        "x": 660,
+        "x": 670,
         "y": 220,
         "wires": [
             [
                 "7c5e424b.14405c"
-            ]
-        ]
-    },
-    {
-        "id": "73efa78a.048df8",
-        "type": "subflow:a3f84c13.142cb",
-        "z": "bede18b8.d8bb48",
-        "name": "SINUSGENERATOR",
-        "env": [],
-        "x": 690,
-        "y": 580,
-        "wires": [
-            [
-                "f248d69f.50d128"
             ]
         ]
     },
@@ -1472,53 +1495,6 @@
         "wires": [
             [
                 "cdb4c08c.0da2d"
-            ]
-        ]
-    },
-    {
-        "id": "f248d69f.50d128",
-        "type": "debug",
-        "z": "bede18b8.d8bb48",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 880,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "3f07f6c7.3ecb6a",
-        "type": "inject",
-        "z": "a3f84c13.142cb",
-        "name": "START",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "interval",
-                "v": "INTERVAL",
-                "vt": "env"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 260,
-        "y": 40,
-        "wires": [
-            [
-                "279682de.4dd0de"
             ]
         ]
     },
@@ -1582,5 +1558,344 @@
         "x": 740,
         "y": 500,
         "wires": []
+    },
+    {
+        "id": "9c3ba0b.511976",
+        "type": "change",
+        "z": "a3f84c13.142cb",
+        "name": "START",
+        "rules": [
+            {
+                "t": "set",
+                "p": "interval",
+                "pt": "msg",
+                "to": "INTERVAL",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 40,
+        "wires": [
+            [
+                "279682de.4dd0de"
+            ]
+        ]
+    },
+    {
+        "id": "3b91af6b.a526",
+        "type": "switch",
+        "z": "a3f84c13.142cb",
+        "name": "RESET",
+        "property": "reset",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 400,
+        "y": 100,
+        "wires": [
+            [
+                "cdb4c08c.0da2d"
+            ]
+        ]
+    },
+    {
+        "id": "3b94cad6.04dee6",
+        "type": "subflow:a3f84c13.142cb",
+        "z": "b6164ce2.07f6a",
+        "name": "SINUSGENERATOR",
+        "env": [],
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "50256fd9.eceda"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "50256fd9.eceda",
+        "type": "debug",
+        "z": "b6164ce2.07f6a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "c8533d47.fd07c",
+        "type": "inject",
+        "z": "b6164ce2.07f6a",
+        "name": "START",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "3b94cad6.04dee6"
+            ]
+        ]
+    },
+    {
+        "id": "fca0f8c9.b12bb8",
+        "type": "inject",
+        "z": "b6164ce2.07f6a",
+        "name": "STOP",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "3b94cad6.04dee6"
+            ]
+        ]
+    },
+    {
+        "id": "a54cb923.d98118",
+        "type": "subflow:a3f84c13.142cb",
+        "z": "b6164ce2.07f6a",
+        "name": "SINUSGENERATOR",
+        "env": [
+            {
+                "name": "INTERVAL",
+                "value": "200",
+                "type": "num"
+            },
+            {
+                "name": "FAKTOR",
+                "value": "50",
+                "type": "num"
+            }
+        ],
+        "x": 440,
+        "y": 340,
+        "wires": [
+            [
+                "bd19b7ca.2e9c38"
+            ],
+            [
+                "7b16cf4e.96fbf"
+            ]
+        ]
+    },
+    {
+        "id": "bd19b7ca.2e9c38",
+        "type": "debug",
+        "z": "b6164ce2.07f6a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f2e8b3d5.8879c",
+        "type": "inject",
+        "z": "b6164ce2.07f6a",
+        "name": "START",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "a54cb923.d98118"
+            ]
+        ]
+    },
+    {
+        "id": "6aa3e84b.3af338",
+        "type": "inject",
+        "z": "b6164ce2.07f6a",
+        "name": "STOP",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 260,
+        "y": 380,
+        "wires": [
+            [
+                "a54cb923.d98118"
+            ]
+        ]
+    },
+    {
+        "id": "873fb83f.621f78",
+        "type": "inject",
+        "z": "b6164ce2.07f6a",
+        "name": "RESET",
+        "props": [
+            {
+                "p": "reset",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [
+                "a54cb923.d98118"
+            ]
+        ]
+    },
+    {
+        "id": "345c8499.8d6d2c",
+        "type": "calculator",
+        "z": "a3f84c13.142cb",
+        "name": "MULTIPLY",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "mult",
+        "constant": "",
+        "round": false,
+        "decimals": 0,
+        "x": 650,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c453b33.d65144",
+        "type": "change",
+        "z": "a3f84c13.142cb",
+        "name": "ElementsToMultiply",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload[1]",
+                "pt": "msg",
+                "to": "FAKTOR",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "345c8499.8d6d2c"
+            ]
+        ]
+    },
+    {
+        "id": "bddc08ff.2b91d8",
+        "type": "debug",
+        "z": "b6164ce2.07f6a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "7b16cf4e.96fbf",
+        "type": "calculator",
+        "z": "b6164ce2.07f6a",
+        "name": "",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "abs",
+        "constant": "",
+        "round": false,
+        "decimals": 0,
+        "x": 660,
+        "y": 360,
+        "wires": [
+            [
+                "bddc08ff.2b91d8"
+            ]
+        ]
     }
 ]
